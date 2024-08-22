@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>newCustomerCreation</title>
+</head>
+<body>
+
+
+<h2>Enter New Customer</h2>
+
+<form id="customerForm">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Your name" required><br>
+
+    <input type="reset">
+    <input type="button" value="Submit" onclick="submitForm()">
+</form>
+
+<script>
+    async function submitForm() {
+        const formData = {
+            name: document.getElementById('name').value,
+        };
+
+        console.log('Form Data:', formData);  // Log the form data
+
+        await fetch('http://localhost:8080/customers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+            alert('Customer saved: ' + JSON.stringify(data));
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to save customer');
+        });
+    }
+</script>
+
+
+</body>
+</html>
+
+<!--
+<input id="customerInput" type="text" name="customerData" placeholder="Enter customer data" />
+<button id="upload-button" onclick="uploadFile()"> Upload </button>
+
+<script>
+    async function uploadFile() {
+        let customerData = document.getElementById("customerInput").value;
+        let formData = { name: customerData };
+
+        await fetch('http://localhost:8080/customers', {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData),
+            alert(formData)
+        })
+        .then(result => result.text())
+        .then(text => alert(text));
+    }
+</script>-->

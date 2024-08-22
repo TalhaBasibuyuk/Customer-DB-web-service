@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>customerDeletion</title>
+</head>
+<body>
+
+<h2>Delete Customer</h2>
+
+<form id="deleteForm">
+  <label for="deleteId">Customer ID:</label>
+  <input type="number" id="deleteId" name="deleteId" placeholder="Enter customer ID" required><br>
+
+  <input type="button" value="Delete" onclick="deleteCustomer()">
+</form>
+
+<script>
+    async function deleteCustomer() {
+        const customerId = document.getElementById('deleteId').value;
+
+        await fetch(`http://localhost:8080/customers/${customerId}`, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to delete customer');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log('Customer deleted:', data);
+            alert('Customer deleted successfully');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to delete customer');
+        });
+    }
+</script>
+</body>
+</html>
