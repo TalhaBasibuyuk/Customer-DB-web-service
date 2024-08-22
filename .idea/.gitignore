@@ -3,7 +3,8 @@
 
 
 
-.idea/libraries/
+.idea
+.idea/*.*
 
 
 # User-specific stuff
@@ -167,3 +168,32 @@ secrets.yml
 .sts4-cache
 .git-hooks/
 node_modules
+
+target
+target/.
+.idea
+.idea/.
+*.class
+.settings
+.settings/.
+.classpath
+.classpath/.
+.log.
+*.log
+*.component
+*.iml
+.project
+/.project
+rebel.xml
+*~
+.DS_Store
+classes
+classes/.
+.copyarea.db
+rebel-remote.xml
+persistence.xml
+hibernate.cfg.xml
+*.jpage
+*.rebel.xml.bak
+.run
+.run/.
