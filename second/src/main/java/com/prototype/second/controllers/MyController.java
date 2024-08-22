@@ -23,7 +23,7 @@ public class MyController {
 
     @GetMapping("/")
     public String welcome(){
-        return "Welcome to our customer database!" +
+        return "Welcome to our Customer Database!" +
                 "GET a single customer's info: /customers/{id}\n" +
                 "GET all customers' info: /customers\n" +
                 "POST: /post.html\n" +
